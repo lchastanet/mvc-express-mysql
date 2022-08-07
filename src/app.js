@@ -6,10 +6,6 @@ const app = express()
 
 app.use(express.json())
 
-const studentsRoutes = require("./routes/student.routes")
-
-app.use("/student", studentsRoutes)
-
 app.get("*", (req, res) => {
   res.status(404).send({ message: "Not found !" })
 })
