@@ -1,8 +1,6 @@
-const express = require("express")
+const router = require("express").Router()
 
 const studentsController = require("../controllers/student.controller")
-
-const router = express.Router()
 
 router.get("/", studentsController.getAll)
 router.get("/:id", studentsController.getOne)

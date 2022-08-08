@@ -6,9 +6,9 @@ const app = express()
 
 app.use(express.json())
 
-const studentsRoutes = require("./routes/student.routes")
+const router = require("./router")
 
-app.use("/student", studentsRoutes)
+app.use("/api", router)
 
 app.get("*", (req, res) => {
   res.status(404).json({ message: "Not found !" })
