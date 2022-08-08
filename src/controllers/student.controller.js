@@ -5,9 +5,9 @@ exports.getAll = async (req, res) => {
   try {
     const students = await studentDataAccess.findAll()
 
-    return res.send(students)
+    return res.json(students)
   } catch (e) {
-    return res.status(500).send({ message: "Something went wrong !" })
+    return res.status(500).json({ message: "Something went wrong !" })
   }
 }
 
@@ -17,11 +17,11 @@ exports.getOne = async (req, res) => {
   try {
     const [student] = await studentDataAccess.findOne(studentId)
 
-    if (!student) return res.status(404).send({ message: "No student found !" })
+    if (!student) return res.status(404).json({ message: "No student found !" })
 
-    return res.send(student)
+    return res.json(student)
   } catch (e) {
-    return res.status(500).send({ message: "Something went wrong !" })
+    return res.status(500).json({ message: "Something went wrong !" })
   }
 }
 
@@ -37,7 +37,7 @@ exports.createOne = async (req, res) => {
 
     return res.status(201).json(data)
   } catch (e) {
-    return res.status(500).send({ message: "Something went wrong !" })
+    return res.status(500).json({ message: "Something went wrong !" })
   }
 }
 
@@ -54,7 +54,7 @@ exports.updateOne = async (req, res) => {
 
     return res.status(200).json(data)
   } catch (e) {
-    return res.status(500).send({ message: "Something went wrong !" })
+    return res.status(500).json({ message: "Something went wrong !" })
   }
 }
 
@@ -64,10 +64,10 @@ exports.deleteOne = async (req, res) => {
 
     const result = await studentDataAccess.removeOne(studentId)
 
-    if (result) return res.sendStatus(204)
+    if (result) return res.jsonStatus(204)
 
-    return res.status(404).send({ message: "No student found !" })
+    return res.status(404).json({ message: "No student found !" })
   } catch (e) {
-    return res.status(500).send({ message: "Something went wrong !" })
+    return res.status(500).json({ message: "Something went wrong !" })
   }
 }
