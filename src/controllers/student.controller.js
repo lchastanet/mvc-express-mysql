@@ -1,7 +1,7 @@
 const studentDataAccess = require("../models/student.model")
 const studentValidator = require("../validators/student.validator")
 
-exports.getAll = async (req, res) => {
+const getAll = async (req, res) => {
   try {
     const students = await studentDataAccess.findAll()
 
@@ -11,7 +11,7 @@ exports.getAll = async (req, res) => {
   }
 }
 
-exports.getOne = async (req, res) => {
+const getOne = async (req, res) => {
   const studentId = req.params.id
 
   try {
@@ -25,7 +25,7 @@ exports.getOne = async (req, res) => {
   }
 }
 
-exports.createOne = async (req, res) => {
+const createOne = async (req, res) => {
   const student = req.body
 
   const validationErrors = studentValidator.validate(student, true)
@@ -41,7 +41,7 @@ exports.createOne = async (req, res) => {
   }
 }
 
-exports.updateOne = async (req, res) => {
+const updateOne = async (req, res) => {
   const studentId = req.params.id
   const student = req.body
 
@@ -58,7 +58,7 @@ exports.updateOne = async (req, res) => {
   }
 }
 
-exports.deleteOne = async (req, res) => {
+const deleteOne = async (req, res) => {
   try {
     const studentId = req.params.id
 
@@ -71,3 +71,5 @@ exports.deleteOne = async (req, res) => {
     return res.status(500).json({ message: "Something went wrong !" })
   }
 }
+
+module.exports = { getAll, getOne, createOne, updateOne, deleteOne }

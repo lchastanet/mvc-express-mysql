@@ -1,6 +1,6 @@
 const db = require("./db")
 
-exports.findAll = async () => {
+const findAll = async () => {
   try {
     const [result] = await db.query("SELECT * FROM `student`")
     return result
@@ -10,7 +10,7 @@ exports.findAll = async () => {
   }
 }
 
-exports.findOne = async (studentId) => {
+const findOne = async (studentId) => {
   try {
     const [result] = await db.query("SELECT * FROM `student` WHERE ID = ?", [
       studentId,
@@ -23,7 +23,7 @@ exports.findOne = async (studentId) => {
   }
 }
 
-exports.addOne = async (student) => {
+const addOne = async (student) => {
   try {
     const { firstname, lastname, age, remote } = student
     const [result] = await db.query(
@@ -38,7 +38,7 @@ exports.addOne = async (student) => {
   }
 }
 
-exports.replaceOne = async (studentId, student) => {
+const replaceOne = async (studentId, student) => {
   try {
     const [result] = await db.query("UPDATE `student` SET ? WHERE ID = ?", [
       student,
@@ -61,7 +61,7 @@ exports.replaceOne = async (studentId, student) => {
   }
 }
 
-exports.removeOne = async (studentId) => {
+const removeOne = async (studentId) => {
   try {
     const [result] = await db.query("DELETE FROM `student` WHERE ID = ?", [
       studentId,
@@ -73,3 +73,5 @@ exports.removeOne = async (studentId) => {
     throw e
   }
 }
+
+module.exports = { findAll, findOne, addOne, replaceOne, removeOne }
