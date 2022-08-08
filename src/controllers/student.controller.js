@@ -64,7 +64,7 @@ exports.deleteOne = async (req, res) => {
 
     const result = await studentDataAccess.removeOne(studentId)
 
-    if (result) return res.jsonStatus(204)
+    if (result) return res.sendStatus(204)
 
     return res.status(404).json({ message: "No student found !" })
   } catch (e) {
